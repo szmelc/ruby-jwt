@@ -42,7 +42,7 @@ module JWT
         alg.const_get(:SUPPORTED).include? algorithm
       end
       verified = algo.verify(ToVerify.new(algorithm, key, signing_input, signature))
-      raise(JWT::VerificationError, 'Signature verification raised') unless verified
+      JSON.generate(status: 401)
     rescue OpenSSL::PKey::PKeyError
       raise JWT::VerificationError, 'Signature verification raised'
     ensure
